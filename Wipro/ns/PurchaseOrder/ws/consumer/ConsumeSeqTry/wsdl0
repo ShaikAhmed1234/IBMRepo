@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SeqTryWS" targetNamespace="http://D-113055154.wipro.com/PurchaseOrder.ws:SeqTryWS" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soapjms="http://www.w3.org/2010/soapjms/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://D-113055154.wipro.com/PurchaseOrder.ws:SeqTryWS" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://D-113055154.wipro.com/PurchaseOrder.ws:SeqTryWS" xmlns:tns="http://D-113055154.wipro.com/PurchaseOrder.ws:SeqTryWS" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+          <xsd:element name="SequenceTryCatch" type="tns:SequenceTryCatch"/>
+          <xsd:element name="SequenceTryCatchResponse" type="tns:SequenceTryCatchResponse"/>
+          <xsd:element name="Error" type="tns:Error"/>
+          <xsd:complexType name="SequenceTryCatch">
+            <xsd:sequence>
+              <xsd:element name="fileName" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+          <xsd:complexType name="SequenceTryCatchResponse">
+            <xsd:sequence>
+              <xsd:element name="result" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+          <xsd:complexType name="Error">
+            <xsd:sequence>
+              <xsd:element name="Reason" nillable="true" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        	</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="Error_PurchaseOrder_docs_Error">
+    <wsdl:part name="parameters" element="tns:Error">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SeqTryWS_PortType_SequenceTryCatch">
+    <wsdl:part name="parameters" element="tns:SequenceTryCatch">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SeqTryWS_PortType_SequenceTryCatchResponse">
+    <wsdl:part name="parameters" element="tns:SequenceTryCatchResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="SeqTryWS_PortType">
+    <wsdl:operation name="SequenceTryCatch">
+      <wsdl:input message="tns:SeqTryWS_PortType_SequenceTryCatch">
+    </wsdl:input>
+      <wsdl:output message="tns:SeqTryWS_PortType_SequenceTryCatchResponse">
+    </wsdl:output>
+      <wsdl:fault name="Error" message="tns:Error_PurchaseOrder_docs_Error">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PurchaseOrder_ws_SeqTryWS_Binder" type="tns:SeqTryWS_PortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="SequenceTryCatch">
+      <soap:operation soapAction="PurchaseOrder_ws_SeqTryWS_Binder_SequenceTryCatch" style="document"/>
+      <wsdl:input>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body parts="parameters" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="Error">
+        <soap:fault name="Error" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PurchaseOrder.ws.provider.SeqTryWS">
+    <wsdl:port name="PurchaseOrder_ws_SeqTryWS_Port" binding="tns:PurchaseOrder_ws_SeqTryWS_Binder">
+      <soap:address location="http://D-113055154.wipro.com:5555/ws/PurchaseOrder.ws.provider.SeqTryWS/PurchaseOrder_ws_SeqTryWS_Port"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

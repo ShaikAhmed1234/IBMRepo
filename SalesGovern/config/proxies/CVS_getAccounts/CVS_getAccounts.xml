@@ -1,0 +1,50 @@
+<service xmlns="http://ws.apache.org/ns/synapse" xmlns:mx="http://mediator.softwareag.com/custom" clientProduct="WST" clientVersion="9.12.0.0000-0243" cs_service_key="CVS_getAccounts" name="SalesGovern.CVS_getAccounts" style="SOAP" transports="local" type="virtual">
+  <resources>
+    <wsdl>
+      <wsdl:description xmlns:wsdl="http://www.w3.org/ns/wsdl" xmlns:tns="http://namespaces.DefaultOrganization.com/wsdl" xmlns:whttp="http://www.w3.org/ns/wsdl/http" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsdlx="http://www.w3.org/ns/wsdl-extensions" targetNamespace="http://namespaces.DefaultOrganization.com/wsdl">
+        <wsdl:types />
+        <wsdl:interface name="CVS_getAccounts_interface">
+          <wsdl:operation name="invoke" pattern="http://www.w3.org/ns/wsdl/in-out" />
+        </wsdl:interface>
+        <wsdl:binding interface="tns:CVS_getAccounts_interface" name="CVS_getAccounts_binding" type="http://www.w3.org/ns/wsdl/http">
+          <wsdl:operation ref="tns:invoke" whttp:location="invoke" whttp:method="POST" />
+        </wsdl:binding>
+        <wsdl:service interface="tns:CVS_getAccounts_interface" name="SalesGovern.CVS_getAccounts">
+          <wsdl:endpoint address="" binding="tns:CVS_getAccounts_binding" name="CVS_getAccounts_abstractEndpoint" />
+        </wsdl:service>
+      </wsdl:description>
+    </wsdl>
+  </resources>
+  <definition>
+    <monitorPolicies>
+      <logInvocation name="Logging Policy">
+        <evaluation frequency="always" />
+        <reporting>
+          <destinations>
+            <jdbc includeRequest="always" includeResponse="always" />
+            <localLog includeRequest="always" includeResponse="always" level="error" />
+          </destinations>
+        </reporting>
+      </logInvocation>
+    </monitorPolicies>
+    <inSequence>
+      <invokeESB service="work:debug" />
+      <send>
+        <endpoint>
+          <cloud xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string" />
+        </endpoint>
+      </send>
+    </inSequence>
+    <outSequence>
+      <send />
+    </outSequence>
+    <faultSequence>
+      <makefault sendNativeProviderFault="true" version="soap11">
+        <code xmlns:ns2="http://schemas.xmlsoap.org/soap/envelope" value="ns2:Server" />
+        <reason value="$ERROR_MESSAGE" />
+      </makefault>
+      <property name="RESPONSE" value="true" />
+      <send />
+    </faultSequence>
+  </definition>
+</service>

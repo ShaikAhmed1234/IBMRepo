@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Values version="2.0">
+  <record name="listeners" javaclass="com.wm.util.Values">
+    <record name="FilePollingListener:C:\wM\Wipro\Inbound" javaclass="com.wm.util.Values">
+      <value name="port">C:\wM\Wipro\Inbound</value>
+      <value name="protocol">FilePolling</value>
+      <value name="pkg">Wipro</value>
+      <value name="enabled">true</value>
+      <value name="key">FilePollingListener:C:\wM\Wipro\Inbound</value>
+      <value name="portAlias">FilePolling</value>
+      <value name="portDescription">FilePolling</value>
+      <value name="factoryKey">webMethods/FilePolling</value>
+      <value name="configURL">/WmFlatFile/configFilePolling.dsp</value>
+      <value name="provider">webMethods</value>
+      <value name="monitorDir">C:\wM\Wipro\Inbound</value>
+      <value name="workDir">C:\wM\Wipro\Working</value>
+      <value name="completionDir">C:\wM\Wipro\Completed</value>
+      <value name="errorDir">C:\wM\Wipro\Error</value>
+      <value name="recursive">no</value>
+      <value name="clusterEnabled">no</value>
+      <value name="cleanupAtStartup">yes</value>
+      <value name="runUser">Administrator</value>
+      <value name="processingService">PurchaseOrder.work:FilePolling</value>
+      <value name="filePollingInterval">5</value>
+      <value name="logMinMessage">no</value>
+      <value name="NFSDirectories">no</value>
+      <value name="cleanUpFileAge">7</value>
+      <value name="cleanUpInterval">24</value>
+      <value name="maxThreads">1</value>
+      <value name="maxFilesPerCycle">1</value>
+      <value name="lockFileExtension">.lock</value>
+    </record>
+  </record>
+  <record name="access" javaclass="com.wm.util.Values">
+    <record name="FilePollingListener:C:\wM\Wipro\Inbound" javaclass="com.wm.util.Values">
+      <null name="home"/>
+      <value name="default">include</value>
+      <record name="nodes" javaclass="com.wm.util.StringSet">
+        <list name="elements">
+        </list>
+      </record>
+      <value name="key">FilePollingListener:C:\wM\Wipro\Inbound</value>
+    </record>
+  </record>
+</Values>
